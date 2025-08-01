@@ -3,7 +3,7 @@
 <main id="primary" class="site-main">
     <!-- Section Hero -->
     <section class="hero-section" style="background: linear-gradient(135deg, rgba(0, 166, 81, 0.8) 60%, rgba(55, 175, 174, 0.8) 100%), url('<?php echo get_template_directory_uri(); ?>/assets/images/Biotox-images.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: #fff; padding: 6rem 0; text-align: left; min-height: 80vh; display: flex; align-items: center;">
-        <div class="container" style="max-width: 900px; margin-left: 0;">
+        <div class="container" style="max-width: 900px; margin-left: 2rem;">
             <h1 class="hero-title" style="font-family: 'Intro Rust', Arial, sans-serif; font-size: 3.5rem; color: #fff; margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); text-align: left;">BTlabs Consulting</h1>
             <p class="hero-subtitle" style="font-size: 1.5rem; margin: 1.5rem 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); text-align: left;">l'expertise environnementale et sociale pour le bien être et la santé des communautés</p>
             <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: inline-block; text-align: left;">Contactez-nous</a>
@@ -26,9 +26,9 @@
         </div>
     </section>
 
-    <section class="domaines-section" style="background-image:url('assets/images/domaines.png'); padding: 4rem 0;">
+    <section class="domaines-section" style="background-image:url('assets/images/domaines.png'gis); padding: 4rem 0;">
         <div class="container">
-            <h2 class="section-title" style="font-family: 'Intro Rust', Arial, sans-serif; color: #37afae; margin-bottom: 2.5rem;">Nos domaines d'activité</h2>
+            <h2 class="section-title" style="font-family: 'Intro Rust', Arial, sans-serif; color: #37afae; margin-bottom: 2.5rem;">NOS SERVICES</h2>
             <div class="domaines-grid" style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center;">
                 <!-- Domaine 1 -->
                 <div class="domaine-card" style="background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(55,175,174,0.08); padding: 2rem 1.5rem; max-width: 320px; flex: 1 1 260px; display: flex; flex-direction: column; align-items: center; text-align: center;">

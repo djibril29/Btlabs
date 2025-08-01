@@ -106,17 +106,72 @@ body {
         padding: 1rem;
     }
     
+    /* Afficher le bouton hamburger sur mobile */
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Masquer le menu desktop sur mobile */
     .main-menu {
+        display: none;
         margin-top: 1rem;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .main-menu.active {
+        display: block;
     }
     
     .main-menu li {
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .main-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .main-menu a {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .main-menu a:hover {
+        background: #f8f8f8;
+        color: #00a651;
+        padding-left: 2rem;
+    }
+    
+    /* Position relative pour le container de navigation */
+    .main-navigation {
+        position: relative;
     }
     
     .footer-content {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+    
+    .main-menu {
+        display: flex !important;
+    }
+    
+    .main-menu li {
+        margin-left: 2rem;
     }
 } 

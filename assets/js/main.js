@@ -13,8 +13,27 @@
         // Mobile menu toggle
         $('.menu-toggle').on('click', function() {
             $(this).toggleClass('active');
-            $('.main-navigation').toggleClass('active');
-            $('.main-menu').slideToggle();
+            $('.main-menu').toggleClass('active').slideToggle(300);
+            
+            // Toggle aria-expanded
+            var isExpanded = $(this).attr('aria-expanded') === 'true';
+            $(this).attr('aria-expanded', !isExpanded);
+        });
+        
+        // Close mobile menu when clicking outside
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.main-navigation').length && !$(e.target).hasClass('menu-toggle')) {
+                $('.menu-toggle').removeClass('active');
+                $('.main-menu').removeClass('active').slideUp(300);
+                $('.menu-toggle').attr('aria-expanded', 'false');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        $('.main-menu a').on('click', function() {
+            $('.menu-toggle').removeClass('active');
+            $('.main-menu').removeClass('active').slideUp(300);
+            $('.menu-toggle').attr('aria-expanded', 'false');
         });
 
         // Smooth scrolling for anchor links
@@ -234,9 +253,11 @@
         var windowWidth = $(window).width();
         
         if (windowWidth > 768) {
-            $('.main-menu').show();
+            $('.main-menu').show().removeClass('active');
             $('.menu-toggle').removeClass('active');
-            $('.main-navigation').removeClass('active');
+            $('.menu-toggle').attr('aria-expanded', 'false');
+        } else {
+            $('.main-menu').hide().removeClass('active');
         }
     }
 
