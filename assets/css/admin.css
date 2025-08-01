@@ -1,0 +1,303 @@
+/* Admin Styles for BTlabs Theme */
+
+/* Custom post type icons */
+#adminmenu .menu-icon-projets .wp-menu-image:before {
+    content: "\f322";
+}
+
+#adminmenu .menu-icon-services .wp-menu-image:before {
+    content: "\f111";
+}
+
+#adminmenu .menu-icon-equipe .wp-menu-image:before {
+    content: "\f307";
+}
+
+/* Meta boxes styling */
+.btlabs-meta-box {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.btlabs-meta-box h2 {
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btlabs-meta-box .inside {
+    padding: 15px;
+}
+
+/* Form styling */
+.btlabs-meta-box input[type="text"],
+.btlabs-meta-box input[type="email"],
+.btlabs-meta-box input[type="tel"],
+.btlabs-meta-box input[type="url"],
+.btlabs-meta-box input[type="date"],
+.btlabs-meta-box select,
+.btlabs-meta-box textarea {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.btlabs-meta-box input[type="text"]:focus,
+.btlabs-meta-box input[type="email"]:focus,
+.btlabs-meta-box input[type="tel"]:focus,
+.btlabs-meta-box input[type="url"]:focus,
+.btlabs-meta-box input[type="date"]:focus,
+.btlabs-meta-box select:focus,
+.btlabs-meta-box textarea:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px #0073aa;
+    outline: none;
+}
+
+.btlabs-meta-box textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Table styling */
+.btlabs-meta-box .form-table th {
+    width: 150px;
+    padding: 15px 10px 15px 0;
+    font-weight: 600;
+    vertical-align: top;
+}
+
+.btlabs-meta-box .form-table td {
+    padding: 15px 10px;
+    vertical-align: top;
+}
+
+/* Description text */
+.btlabs-meta-box .description {
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+/* Status indicators */
+.status-en-cours {
+    color: #0073aa;
+    font-weight: 600;
+}
+
+.status-termine {
+    color: #46b450;
+    font-weight: 600;
+}
+
+.status-en-attente {
+    color: #ffb900;
+    font-weight: 600;
+}
+
+.status-annule {
+    color: #dc3232;
+    font-weight: 600;
+}
+
+/* Availability indicators */
+.disponibilite-immediate {
+    color: #46b450;
+    font-weight: 600;
+}
+
+.disponibilite-sous-2-semaines {
+    color: #0073aa;
+    font-weight: 600;
+}
+
+.disponibilite-sous-1-mois {
+    color: #ffb900;
+    font-weight: 600;
+}
+
+.disponibilite-sur-devis {
+    color: #666;
+    font-weight: 600;
+}
+
+/* Dashboard widgets */
+.btlabs-dashboard-widget {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-bottom: 20px;
+}
+
+.btlabs-dashboard-widget h3 {
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btlabs-dashboard-widget .inside {
+    padding: 15px;
+}
+
+/* Quick stats */
+.btlabs-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btlabs-stat {
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.btlabs-stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0073aa;
+    display: block;
+}
+
+.btlabs-stat-label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+/* Recent items */
+.btlabs-recent-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.btlabs-recent-item:last-child {
+    border-bottom: none;
+}
+
+.btlabs-recent-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.btlabs-recent-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Theme options page */
+.btlabs-options-page {
+    max-width: 800px;
+}
+
+.btlabs-options-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-bottom: 20px;
+}
+
+.btlabs-options-section h2 {
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.btlabs-options-section .inside {
+    padding: 20px;
+}
+
+/* Social media icons */
+.btlabs-social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btlabs-social-icon {
+    width: 30px;
+    height: 30px;
+    background: #0073aa;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btlabs-social-icon:hover {
+    background: #005a87;
+    color: #fff;
+}
+
+/* Responsive admin */
+@media (max-width: 782px) {
+    .btlabs-meta-box .form-table th,
+    .btlabs-meta-box .form-table td {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .btlabs-meta-box .form-table th {
+        border-bottom: none;
+        padding-bottom: 5px;
+    }
+    
+    .btlabs-stats {
+        flex-direction: column;
+    }
+    
+    .btlabs-stat {
+        margin: 10px 0;
+    }
+}
+
+/* Custom admin notices */
+.btlabs-notice {
+    background: #fff;
+    border-left: 4px solid #0073aa;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin: 5px 0 15px;
+    padding: 12px;
+}
+
+.btlabs-notice.btlabs-notice-success {
+    border-left-color: #46b450;
+}
+
+.btlabs-notice.btlabs-notice-warning {
+    border-left-color: #ffb900;
+}
+
+.btlabs-notice.btlabs-notice-error {
+    border-left-color: #dc3232;
+}
+
+/* Custom admin colors */
+.btlabs-color-primary {
+    color: #2c5aa0;
+}
+
+.btlabs-bg-primary {
+    background-color: #2c5aa0;
+}
+
+.btlabs-border-primary {
+    border-color: #2c5aa0;
+} 

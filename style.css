@@ -1,0 +1,117 @@
+/*
+Theme Name: BTlabs
+Description: Thème personnalisé pour BTlabs - Cabinet d'étude environnementale et sociale
+Author: BTlabs Team
+Version: 1.0
+License: GPL v2 or later
+Text Domain: btlabs
+*/
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+.site-header {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c5aa0;
+}
+
+.main-menu {
+    display: flex;
+    list-style: none;
+}
+
+.main-menu li {
+    margin-left: 2rem;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-menu a:hover {
+    color: #2c5aa0;
+}
+
+/* Main Content */
+.site-main {
+    margin-top: 80px;
+    min-height: calc(100vh - 160px);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Footer */
+.site-footer {
+    background: #2c5aa0;
+    color: #fff;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .site-navigation {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .main-menu {
+        margin-top: 1rem;
+    }
+    
+    .main-menu li {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+} 
