@@ -8,35 +8,7 @@
             ?>
             
             <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
-                <header class="entry-header">
-                    <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-                    
-                    <div class="entry-meta">
-                        <span class="posted-on">
-                            <?php
-                            printf(
-                                esc_html__('Publié le %s', 'btlabs'),
-                                '<time class="entry-date published" datetime="' . esc_attr(get_the_date(DATE_W3C)) . '">' . esc_html(get_the_date()) . '</time>'
-                            );
-                            ?>
-                        </span>
-                        
-                        <span class="byline">
-                            <?php
-                            printf(
-                                esc_html__('par %s', 'btlabs'),
-                                '<span class="author vcard"><a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
-                            );
-                            ?>
-                        </span>
-                        
-                        <?php if (has_category()) : ?>
-                            <span class="cat-links">
-                                <?php the_category(', '); ?>
-                            </span>
-                        <?php endif; ?>
-                    </div>
-                </header>
+                <?php get_template_part('template-parts/entry-header'); ?>
 
                 <?php if (has_post_thumbnail()) : ?>
                     <div class="post-thumbnail">
@@ -55,35 +27,7 @@
                     ?>
                 </div>
 
-                <footer class="entry-footer">
-                    <?php if (has_tag()) : ?>
-                        <div class="tags-links">
-                            <?php the_tags('<span class="tags-title">' . esc_html__('Tags:', 'btlabs') . '</span> ', ', '); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (get_edit_post_link()) : ?>
-                        <div class="edit-link">
-                            <?php
-                            edit_post_link(
-                                sprintf(
-                                    wp_kses(
-                                        __('Modifier <span class="screen-reader-text">"%s"</span>', 'btlabs'),
-                                        array(
-                                            'span' => array(
-                                                'class' => array(),
-                                            ),
-                                        )
-                                    ),
-                                    wp_kses_post(get_the_title())
-                                ),
-                                '<span class="edit-link">',
-                                '</span>'
-                            );
-                            ?>
-                        </div>
-                    <?php endif; ?>
-                </footer>
+                <?php get_template_part('template-parts/entry-footer'); ?>
             </article>
 
             <?php

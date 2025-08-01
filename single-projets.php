@@ -8,27 +8,7 @@
             ?>
             
             <article id="post-<?php the_ID(); ?>" <?php post_class('single-projet'); ?>>
-                <header class="entry-header">
-                    <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-                    
-                    <div class="entry-meta">
-                        <?php
-                        $categories = get_the_terms(get_the_ID(), 'categorie_projet');
-                        if ($categories && !is_wp_error($categories)) {
-                            echo '<span class="projet-categories">';
-                            echo '<strong>Catégories:</strong> ';
-                            foreach ($categories as $category) {
-                                echo '<a href="' . esc_url(get_term_link($category)) . '">' . esc_html($category->name) . '</a>';
-                            }
-                            echo '</span>';
-                        }
-                        ?>
-                        
-                        <span class="projet-date">
-                            <?php echo get_the_date(); ?>
-                        </span>
-                    </div>
-                </header>
+                <?php get_template_part('template-parts/entry-header'); ?>
 
                 <?php if (has_post_thumbnail()) : ?>
                     <div class="projet-thumbnail">
@@ -47,29 +27,7 @@
                     ?>
                 </div>
 
-                <footer class="entry-footer">
-                    <?php if (get_edit_post_link()) : ?>
-                        <div class="edit-link">
-                            <?php
-                            edit_post_link(
-                                sprintf(
-                                    wp_kses(
-                                        __('Modifier <span class="screen-reader-text">"%s"</span>', 'btlabs'),
-                                        array(
-                                            'span' => array(
-                                                'class' => array(),
-                                            ),
-                                        )
-                                    ),
-                                    wp_kses_post(get_the_title())
-                                ),
-                                '<span class="edit-link">',
-                                '</span>'
-                            );
-                            ?>
-                        </div>
-                    <?php endif; ?>
-                </footer>
+                <?php get_template_part('template-parts/entry-footer'); ?>
             </article>
 
             <?php

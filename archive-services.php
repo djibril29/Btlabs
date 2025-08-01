@@ -1,51 +1,65 @@
-<?php get_header(); ?>
+<?php 
+/**
+ * Generic Archive Template
+ * 
+ * @package BTlabs
+ */
+
+get_header(); 
+
+// Get current post type and set appropriate titles and descriptions
+$post_type = get_post_type();
+$post_type_object = get_post_type_object($post_type);
+
+switch ($post_type) {
+    case 'equipe':
+        $page_title = 'Notre Équipe';
+        $page_description = 'Rencontrez nos experts en études environnementales et sociales.';
+        $grid_class = 'equipe-grid';
+        $no_posts_title = 'Aucun membre trouvé';
+        $no_posts_description = 'Désolé, aucun membre ne correspond à votre recherche.';
+        break;
+        
+    case 'projets':
+        $page_title = 'Nos Projets';
+        $page_description = 'Découvrez nos réalisations en matière d\'études environnementales et sociales.';
+        $grid_class = 'projets-grid';
+        $no_posts_title = 'Aucun projet trouvé';
+        $no_posts_description = 'Désolé, aucun projet ne correspond à votre recherche.';
+        break;
+        
+    case 'services':
+        $page_title = 'Nos Services';
+        $page_description = 'Découvrez notre gamme complète de services en études environnementales et sociales.';
+        $grid_class = 'services-grid';
+        $no_posts_title = 'Aucun service trouvé';
+        $no_posts_description = 'Désolé, aucun service ne correspond à votre recherche.';
+        break;
+        
+    default:
+        $page_title = $post_type_object ? $post_type_object->labels->name : 'Archives';
+        $page_description = '';
+        $grid_class = 'posts-grid';
+        $no_posts_title = 'Aucun contenu trouvé';
+        $no_posts_description = 'Désolé, aucun contenu ne correspond à votre recherche.';
+}
+?>
 
 <main id="primary" class="site-main">
     <div class="container">
         <header class="page-header">
-            <h1 class="page-title">Nos Services</h1>
-            <div class="page-description">
-                <p>Découvrez notre gamme complète de services en études environnementales et sociales.</p>
-            </div>
+            <h1 class="page-title"><?php echo esc_html($page_title); ?></h1>
+            <?php if ($page_description) : ?>
+                <div class="page-description">
+                    <p><?php echo esc_html($page_description); ?></p>
+                </div>
+            <?php endif; ?>
         </header>
 
         <?php if (have_posts()) : ?>
-            <div class="services-grid">
+            <div class="<?php echo esc_attr($grid_class); ?>">
                 <?php while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('service-card'); ?>>
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="service-thumbnail">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('btlabs-card'); ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="service-content">
-                            <h2 class="service-title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h2>
-                            
-                            <div class="service-meta">
-                                <?php
-                                $types = get_the_terms(get_the_ID(), 'type_service');
-                                if ($types && !is_wp_error($types)) {
-                                    echo '<span class="service-type">';
-                                    foreach ($types as $type) {
-                                        echo '<a href="' . esc_url(get_term_link($type)) . '">' . esc_html($type->name) . '</a>';
-                                    }
-                                    echo '</span>';
-                                }
-                                ?>
-                            </div>
-                            
-                            <div class="service-excerpt">
-                                <?php the_excerpt(); ?>
-                            </div>
-                            
-                            <a href="<?php the_permalink(); ?>" class="read-more">En savoir plus</a>
-                        </div>
-                    </article>
+                    <?php get_template_part('template-parts/archive-card'); ?>
                 <?php endwhile; ?>
             </div>
             
@@ -59,12 +73,12 @@
             ?>
             
         <?php else : ?>
-            <div class="no-services">
-                <h2>Aucun service trouvé</h2>
-                <p>Désolé, aucun service ne correspond à votre recherche.</p>
+            <div class="no-posts">
+                <h2><?php echo esc_html($no_posts_title); ?></h2>
+                <p><?php echo esc_html($no_posts_description); ?></p>
             </div>
         <?php endif; ?>
     </div>
 </main>
 
-<?php get_footer(); ?> 
+<?php get_footer(); ?>

@@ -49,9 +49,7 @@ body {
     margin: 0 auto;
 }
 
-.site-logo {
-    color: #37afae;
-}
+/* Site logo color defined in custom.css */
 
 .main-menu {
     display: flex;
@@ -69,9 +67,7 @@ body {
     transition: color 0.3s ease;
 }
 
-.main-menu a:hover {
-    color: #00a651;
-}
+/* Menu hover color defined in custom.css */
 
 /* Main Content */
 .site-main {
@@ -86,9 +82,8 @@ body {
 }
 
 /* Footer */
+/* Footer styles consolidated in custom.css */
 .site-footer {
-    background: #070606;
-    color: #fff;
     padding: 2rem 0;
     margin-top: auto;
 }
@@ -102,15 +97,7 @@ body {
     padding: 0 2rem;
 }
 
-.read-more, .btn-primary {
-    background: #00a651;
-    color: #fff;
-}
-
-.read-more:hover, .btn-primary:hover {
-    background: #af3774;
-    color: #fff;
-}
+/* Button styles moved to custom.css to avoid duplication */
 
 /* Responsive */
 @media (max-width: 768px) {

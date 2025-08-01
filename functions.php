@@ -76,35 +76,18 @@ function btlabs_widgets_init() {
         'after_title' => '</h2>',
     ));
     
-    register_sidebar(array(
-        'name' => __('Footer Widget 1', 'btlabs'),
-        'id' => 'footer-1',
-        'description' => __('Premier widget du footer', 'btlabs'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3 class="widget-title">',
-        'after_title' => '</h3>',
-    ));
-    
-    register_sidebar(array(
-        'name' => __('Footer Widget 2', 'btlabs'),
-        'id' => 'footer-2',
-        'description' => __('Deuxième widget du footer', 'btlabs'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3 class="widget-title">',
-        'after_title' => '</h3>',
-    ));
-    
-    register_sidebar(array(
-        'name' => __('Footer Widget 3', 'btlabs'),
-        'id' => 'footer-3',
-        'description' => __('Troisième widget du footer', 'btlabs'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3 class="widget-title">',
-        'after_title' => '</h3>',
-    ));
+    // Register footer widgets using a loop to reduce code duplication
+    for ($i = 1; $i <= 3; $i++) {
+        register_sidebar(array(
+            'name' => sprintf(__('Footer Widget %d', 'btlabs'), $i),
+            'id' => 'footer-' . $i,
+            'description' => sprintf(__('Widget %d du footer', 'btlabs'), $i),
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget' => '</div>',
+            'before_title' => '<h3 class="widget-title">',
+            'after_title' => '</h3>',
+        ));
+    }
 }
 add_action('widgets_init', 'btlabs_widgets_init');
 
@@ -292,4 +275,18 @@ require get_template_directory() . '/inc/custom-meta.php';
 /**
  * Include theme options
  */
-require get_template_directory() . '/inc/theme-options.php'; 
+require get_template_directory() . '/inc/theme-options.php';
+
+/**
+ * Fallback menu function
+ */
+function btlabs_fallback_menu() {
+    echo '<ul class="main-menu">';
+    echo '<li><a href="' . home_url('/') . '">Accueil</a></li>';
+    echo '<li><a href="' . home_url('/a-propos/') . '">À propos</a></li>';
+    echo '<li><a href="' . home_url('/services/') . '">Services</a></li>';
+    echo '<li><a href="' . home_url('/projets/') . '">Projets</a></li>';
+    echo '<li><a href="' . home_url('/equipe/') . '">Équipe</a></li>';
+    echo '<li><a href="' . home_url('/contact/') . '">Contact</a></li>';
+    echo '</ul>';
+} 
