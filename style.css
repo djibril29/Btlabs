@@ -14,6 +14,16 @@ Text Domain: btlabs
     box-sizing: border-box;
 }
 
+/* Ajout de la police Intro Rust */
+@font-face {
+    font-family: 'Intro Rust';
+    src: url('assets/fonts/IntroRust-Regular.woff2') format('woff2'),
+         url('assets/fonts/IntroRust-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
@@ -40,9 +50,7 @@ body {
 }
 
 .site-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #2c5aa0;
+    color: #37afae;
 }
 
 .main-menu {
@@ -62,7 +70,7 @@ body {
 }
 
 .main-menu a:hover {
-    color: #2c5aa0;
+    color: #00a651;
 }
 
 /* Main Content */
@@ -79,7 +87,7 @@ body {
 
 /* Footer */
 .site-footer {
-    background: #2c5aa0;
+    background: #070606;
     color: #fff;
     padding: 2rem 0;
     margin-top: auto;
@@ -92,6 +100,16 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+.read-more, .btn-primary {
+    background: #00a651;
+    color: #fff;
+}
+
+.read-more:hover, .btn-primary:hover {
+    background: #af3774;
+    color: #fff;
 }
 
 /* Responsive */

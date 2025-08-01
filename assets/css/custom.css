@@ -1,3 +1,61 @@
+/* Palette principale */
+:root {
+    --primary-color: #00a651;
+    --secondary-title: #37afae;
+    --highlight: #af3774;
+    --footer-bg: #070606;
+    --text-main: #333;
+}
+
+body {
+    color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6, .entry-title, .page-title {
+    font-family: 'Intro Rust', Arial, sans-serif;
+    color: var(--secondary-title);
+}
+
+.site-logo {
+    color: var(--secondary-title);
+}
+
+.read-more, .btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.read-more:hover, .btn-primary:hover {
+    background: var(--highlight);
+    color: #fff;
+}
+
+.projet-title a, .service-title a, .membre-nom a, .post-title a {
+    color: var(--secondary-title);
+}
+
+.projet-title a:hover, .service-title a:hover, .membre-nom a:hover, .post-title a:hover {
+    color: var(--primary-color);
+}
+
+.footer-widget-area, .footer-bottom, .site-footer {
+    background: var(--footer-bg) !important;
+    color: #fff !important;
+}
+
+.footer-menu-list a {
+    color: #fff;
+}
+
+/* Pour les éléments à mettre en valeur */
+.highlight, .badge, .cta {
+    background: var(--highlight);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.25em 0.75em;
+    font-weight: bold;
+}
+
 /* Custom Styles for BTlabs Theme */
 
 /* Posts Grid */
