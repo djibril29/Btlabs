@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <section class="domaines-section" style="background-image:url('assets/images/domaines.png'gis); padding: 4rem 0;">
+    <section class="domaines-section" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/images/domaines.png'); padding: 4rem 0;">
         <div class="container">
             <h2 class="section-title" style="font-family: 'Intro Rust', Arial, sans-serif; color: #37afae; margin-bottom: 2.5rem;">NOS SERVICES</h2>
             <div class="domaines-grid" style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center;">
