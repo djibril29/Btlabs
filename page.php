@@ -30,25 +30,7 @@
                 </div>
 
                 <?php if (get_edit_post_link()) : ?>
-                    <footer class="entry-footer">
-                        <?php
-                        edit_post_link(
-                            sprintf(
-                                wp_kses(
-                                    __('Modifier <span class="screen-reader-text">"%s"</span>', 'btlabs'),
-                                    array(
-                                        'span' => array(
-                                            'class' => array(),
-                                        ),
-                                    )
-                                ),
-                                wp_kses_post(get_the_title())
-                            ),
-                            '<span class="edit-link">',
-                            '</span>'
-                        );
-                        ?>
-                    </footer>
+                    <?php get_template_part('template-parts/entry-footer'); ?>
                 <?php endif; ?>
             </article>
 

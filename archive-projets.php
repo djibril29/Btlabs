@@ -1,51 +1,65 @@
-<?php get_header(); ?>
+<?php 
+/**
+ * Generic Archive Template
+ * 
+ * @package BTlabs
+ */
+
+get_header(); 
+
+// Get current post type and set appropriate titles and descriptions
+$post_type = get_post_type();
+$post_type_object = get_post_type_object($post_type);
+
+switch ($post_type) {
+    case 'equipe':
+        $page_title = 'Notre Équipe';
+        $page_description = 'Rencontrez nos experts en études environnementales et sociales.';
+        $grid_class = 'equipe-grid';
+        $no_posts_title = 'Aucun membre trouvé';
+        $no_posts_description = 'Désolé, aucun membre ne correspond à votre recherche.';
+        break;
+        
+    case 'projets':
+        $page_title = 'Nos Projets';
+        $page_description = 'Découvrez nos réalisations en matière d\'études environnementales et sociales.';
+        $grid_class = 'projets-grid';
+        $no_posts_title = 'Aucun projet trouvé';
+        $no_posts_description = 'Désolé, aucun projet ne correspond à votre recherche.';
+        break;
+        
+    case 'services':
+        $page_title = 'Nos Services';
+        $page_description = 'Découvrez notre gamme complète de services en études environnementales et sociales.';
+        $grid_class = 'services-grid';
+        $no_posts_title = 'Aucun service trouvé';
+        $no_posts_description = 'Désolé, aucun service ne correspond à votre recherche.';
+        break;
+        
+    default:
+        $page_title = $post_type_object ? $post_type_object->labels->name : 'Archives';
+        $page_description = '';
+        $grid_class = 'posts-grid';
+        $no_posts_title = 'Aucun contenu trouvé';
+        $no_posts_description = 'Désolé, aucun contenu ne correspond à votre recherche.';
+}
+?>
 
 <main id="primary" class="site-main">
     <div class="container">
         <header class="page-header">
-            <h1 class="page-title">Nos Projets</h1>
-            <div class="page-description">
-                <p>Découvrez nos réalisations en matière d'études environnementales et sociales.</p>
-            </div>
+            <h1 class="page-title"><?php echo esc_html($page_title); ?></h1>
+            <?php if ($page_description) : ?>
+                <div class="page-description">
+                    <p><?php echo esc_html($page_description); ?></p>
+                </div>
+            <?php endif; ?>
         </header>
 
         <?php if (have_posts()) : ?>
-            <div class="projets-grid">
+            <div class="<?php echo esc_attr($grid_class); ?>">
                 <?php while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('projet-card'); ?>>
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="projet-thumbnail">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('btlabs-card'); ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="projet-content">
-                            <h2 class="projet-title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h2>
-                            
-                            <div class="projet-meta">
-                                <?php
-                                $categories = get_the_terms(get_the_ID(), 'categorie_projet');
-                                if ($categories && !is_wp_error($categories)) {
-                                    echo '<span class="projet-category">';
-                                    foreach ($categories as $category) {
-                                        echo '<a href="' . esc_url(get_term_link($category)) . '">' . esc_html($category->name) . '</a>';
-                                    }
-                                    echo '</span>';
-                                }
-                                ?>
-                            </div>
-                            
-                            <div class="projet-excerpt">
-                                <?php the_excerpt(); ?>
-                            </div>
-                            
-                            <a href="<?php the_permalink(); ?>" class="read-more">Voir le projet</a>
-                        </div>
-                    </article>
+                    <?php get_template_part('template-parts/archive-card'); ?>
                 <?php endwhile; ?>
             </div>
             
@@ -59,12 +73,12 @@
             ?>
             
         <?php else : ?>
-            <div class="no-projets">
-                <h2>Aucun projet trouvé</h2>
-                <p>Désolé, aucun projet ne correspond à votre recherche.</p>
+            <div class="no-posts">
+                <h2><?php echo esc_html($no_posts_title); ?></h2>
+                <p><?php echo esc_html($no_posts_description); ?></p>
             </div>
         <?php endif; ?>
     </div>
 </main>
 
-<?php get_footer(); ?> 
+<?php get_footer(); ?>
