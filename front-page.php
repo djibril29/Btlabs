@@ -2,11 +2,11 @@
 
 <main id="primary" class="site-main">
     <!-- Section Hero -->
-    <section class="hero-section" style="background: linear-gradient(135deg, #00a651 60%, #37afae 100%); color: #fff; padding: 4rem 0; text-align: center;">
+    <section class="hero-section" style="background: linear-gradient(135deg, rgba(0, 166, 81, 0.8) 60%, rgba(55, 175, 174, 0.8) 100%), url('<?php echo get_template_directory_uri(); ?>/assets/images/Biotox-images.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: #fff; padding: 6rem 0; text-align: center; min-height: 80vh; display: flex; align-items: center;">
         <div class="container">
-            <h1 class="hero-title" style="font-family: 'Intro Rust', Arial, sans-serif; font-size: 3rem; color: #fff;">Bienvenue chez BTlabs</h1>
-            <p class="hero-subtitle" style="font-size: 1.5rem; margin: 1.5rem 0;">Cabinet d'étude environnementale et sociale</p>
-            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-primary" style="font-size: 1.2rem;">Contactez-nous</a>
+            <h1 class="hero-title" style="font-family: 'Intro Rust', Arial, sans-serif; font-size: 3.5rem; color: #fff; margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Bienvenue chez BTlabs</h1>
+            <p class="hero-subtitle" style="font-size: 1.5rem; margin: 1.5rem 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Cabinet d'étude environnementale et sociale</p>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">Contactez-nous</a>
         </div>
     </section>
 
