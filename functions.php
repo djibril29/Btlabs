@@ -54,6 +54,11 @@ function btlabs_scripts() {
     // Enqueue JavaScript
     wp_enqueue_script('btlabs-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
     
+    // Enqueue carousel JS only on front page
+    if (is_front_page()) {
+        wp_enqueue_script('btlabs-carousel', get_template_directory_uri() . '/assets/js/carousel.js', array(), '1.0.0', true);
+    }
+    
     // Localize script for AJAX
     wp_localize_script('btlabs-main', 'btlabs_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),

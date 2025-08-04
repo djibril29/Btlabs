@@ -29,9 +29,10 @@
 
             <!-- Slides des projets récents -->
             <?php
+            // Utiliser une seule requête pour les projets récents (réutilisée plus tard)
             $recent_projects = new WP_Query(array(
                 'post_type' => 'projets',
-                'posts_per_page' => 2,
+                'posts_per_page' => 3,
                 'post_status' => 'publish',
                 'orderby' => 'date',
                 'order' => 'DESC',
@@ -44,8 +45,11 @@
             ));
             
             $slide_number = 2;
+            $projects_for_section = array(); // Sauvegarder pour réutilisation
             if ($recent_projects->have_posts()) :
-                while ($recent_projects->have_posts()) : $recent_projects->the_post();
+                $project_count = 0;
+                while ($recent_projects->have_posts() && $project_count < 2) : $recent_projects->the_post();
+                    $projects_for_section[] = get_post(); // Sauvegarder le projet
                     $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'btlabs-hero');
                     if (!$thumbnail_url) {
                         $thumbnail_url = get_template_directory_uri() . '/assets/images/Biotox-images.png';
@@ -87,8 +91,9 @@
                     </div>
                     <?php
                     $slide_number++;
+                    $project_count++;
                 endwhile;
-                wp_reset_postdata();
+                // Ne pas reset ici car on réutilise la requête
             endif;
             ?>
         </div>
@@ -109,109 +114,7 @@
         </button>
     </section>
 
-    <!-- JavaScript pour le carrousel -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.nav-dot');
-        const prevBtn = document.querySelector('.carousel-btn.prev');
-        const nextBtn = document.querySelector('.carousel-btn.next');
-        let currentSlide = 0;
-        let slideInterval;
 
-        // Fonction pour changer de slide
-        function goToSlide(index) {
-            // Masquer toutes les slides
-            slides.forEach(slide => {
-                slide.style.opacity = '0';
-                slide.classList.remove('active');
-            });
-            
-            // Désactiver tous les dots
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            // Afficher la slide actuelle
-            slides[index].style.opacity = '1';
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            
-            currentSlide = index;
-        }
-
-        // Fonction pour passer à la slide suivante
-        function nextSlide() {
-            const next = (currentSlide + 1) % slides.length;
-            goToSlide(next);
-        }
-
-        // Fonction pour passer à la slide précédente
-        function prevSlide() {
-            const prev = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(prev);
-        }
-
-        // Événements pour les boutons de navigation
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        // Événements pour les dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => goToSlide(index));
-        });
-
-        // Auto-play du carrousel
-        function startAutoPlay() {
-            slideInterval = setInterval(nextSlide, 5000); // Change toutes les 5 secondes
-        }
-
-        function stopAutoPlay() {
-            clearInterval(slideInterval);
-        }
-
-        // Démarrer l'auto-play
-        startAutoPlay();
-
-        // Arrêter l'auto-play au survol
-        const carousel = document.querySelector('.hero-carousel');
-        carousel.addEventListener('mouseenter', stopAutoPlay);
-        carousel.addEventListener('mouseleave', startAutoPlay);
-
-        // Navigation au clavier
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
-        });
-
-        // Swipe pour mobile (optionnel)
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carousel.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        carousel.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextSlide(); // Swipe gauche
-                } else {
-                    prevSlide(); // Swipe droite
-                }
-            }
-        }
-    });
-    </script>
 
      <!-- Section Presentation -->
     <section class="presentation-section">
@@ -319,91 +222,13 @@
             <h2 class="section-title">Projets récents</h2>
             <div class="projets-grid">
                 <?php
-                // Version 1: Requête avec image à la une (priorité)
-                $projets = new WP_Query(array(
-                    'post_type' => 'projets',
-                    'posts_per_page' => 3,
-                    'post_status' => 'publish',
-                    'orderby' => 'date',
-                    'order' => 'DESC',
-                    'meta_query' => array(
-                        array(
-                            'key' => '_thumbnail_id',
-                            'compare' => 'EXISTS'
-                        ),
-                    )
-                ));
-                
-                // Si aucun projet avec image, essayer sans cette condition
-                if (!$projets->have_posts()) {
-                    $projets = new WP_Query(array(
-                        'post_type' => 'projets',
-                        'posts_per_page' => 3,
-                        'post_status' => 'publish',
-                        'orderby' => 'date',
-                        'order' => 'DESC'
-                    ));
-                }
-                
-                // Débogage (à retirer en production)
-                if (current_user_can('administrator')) {
-                    echo '<!-- Debug: Nombre de projets trouvés: ' . $projets->found_posts . ' -->';
-                    echo '<!-- Debug: Post type: projets -->';
-                    echo '<!-- Debug: Query: ' . $projets->request . ' -->';
-                }
-                
-                if ($projets->have_posts()) :
-                    while ($projets->have_posts()) : $projets->the_post(); ?>
-                        <article class="projet-card">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <div class="projet-thumbnail">
-                                    <a href="<?php the_permalink(); ?>">
-                                        <?php the_post_thumbnail('btlabs-card', array('style' => 'width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease;')); ?>
-                                    </a>
-                                    <div class="projet-overlay">
-                                        <span>Voir le projet</span>
-                                    </div>
-                                </div>
-                            <?php else : ?>
-                                <!-- Image par défaut si pas d'image à la une -->
-                                <div class="projet-thumbnail" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #00a651 0%, #37afae 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
-                                    <div style="text-align: center; color: #fff;">
-                                        <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.7;"></i>
-                                        <p style="margin: 0; font-size: 1.1rem; opacity: 0.9;">Projet BTLabs</p>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <div class="projet-content">
-                                <h3 class="projet-title">
-                                    <a href="<?php the_permalink(); ?>" style="color: var(--secondary-title); text-decoration: none; font-size: 1.3rem; font-weight: 600;"><?php the_title(); ?></a>
-                                </h3>
-                                
-                                <div class="projet-meta">
-                                    <?php
-                                    $categories = get_the_terms(get_the_ID(), 'categorie_projet');
-                                    if ($categories && !is_wp_error($categories)) {
-                                        echo '<span class="projet-category" style="background: var(--primary-color); color: #fff; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">';
-                                        echo esc_html($categories[0]->name);
-                                        echo '</span>';
-                                    }
-                                    ?>
-                                    <span class="projet-date">
-                                        <?php echo get_the_date('d/m/Y'); ?>
-                                    </span>
-                                </div>
-                                
-                                <div class="projet-excerpt">
-                                    <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
-                                </div>
-                                
-                                <a href="<?php the_permalink(); ?>" class="read-more">
-                                    Découvrir le projet
-                                </a>
-                            </div>
-                        </article>
+                // Réutiliser la requête des projets récents déjà effectuée
+                if ($recent_projects->have_posts()) :
+                    $recent_projects->rewind_posts(); // Rembobiner pour reprendre du début
+                    while ($recent_projects->have_posts()) : $recent_projects->the_post(); ?>
+                        <?php get_template_part('template-parts/archive-card'); ?>
                     <?php endwhile;
-                    wp_reset_postdata();
+                    wp_reset_postdata(); // Reset ici après utilisation complète
                 else : ?>
                     <div style="text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 15px; border: 2px dashed #ddd;">
                         <h3 style="color: #666; margin-bottom: 1rem;">Aucun projet disponible pour le moment</h3>
@@ -416,7 +241,7 @@
             </div>
             
             <!-- Bouton "Voir tous les projets" -->
-            <?php if ($projets->have_posts()) : ?>
+            <?php if ($recent_projects->have_posts()) : ?>
                 <div style="text-align: center; margin-top: 3rem;">
                     <a href="<?php echo esc_url(home_url('/projets/')); ?>" class="btn-primary">
                         Voir tous nos projets
@@ -426,34 +251,7 @@
         </div>
     </section>
 
-    <style>
-    /* Styles pour les interactions hover des cartes de projets */
-    .projet-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    }
-    
-    .projet-card:hover .projet-overlay {
-        opacity: 1;
-    }
-    
-    .projet-card:hover .projet-thumbnail img {
-        transform: scale(1.1);
-    }
-    
-    .projet-card .read-more:hover {
-        background: var(--highlight) !important;
-        transform: translateY(-2px);
-    }
-    
-    /* Responsive pour la grille de projets */
-    @media (max-width: 768px) {
-        .projets-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-        }
-    }
-    </style>
+
      <!-- Section Partenaires -->
      <section class="partenaires-section">
         <div class="container">

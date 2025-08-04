@@ -292,48 +292,6 @@
     <?php endwhile; // End of the loop. ?>
 </main>
 
-<style>
-/* Styles pour les interactions hover */
-.related-projet-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
 
-.related-projet-card:hover .related-projet-overlay {
-    opacity: 1;
-}
-
-.related-projet-card:hover .related-projet-thumbnail img {
-    transform: scale(1.1);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .projet-hero-content h1 {
-        font-size: 2.5rem !important;
-    }
-    
-    .projet-info-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .results-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .related-projects-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .projet-meta-hero {
-        flex-direction: column;
-        gap: 1rem !important;
-    }
-}
-</style>
 
 <?php get_footer(); ?> 
