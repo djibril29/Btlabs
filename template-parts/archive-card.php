@@ -32,7 +32,7 @@ switch ($post_type) {
         $title_class = 'projet-title';
         $content_class = 'projet-content';
         $excerpt_class = 'projet-excerpt';
-        $read_more_text = 'Voir le projet';
+        $read_more_text = is_front_page() ? 'Découvrir le projet' : 'Voir le projet';
         
         // Get taxonomy terms
         $terms = get_the_terms($post_id, 'categorie_projet');
@@ -71,6 +71,19 @@ switch ($post_type) {
             <a href="<?php the_permalink(); ?>">
                 <?php the_post_thumbnail('btlabs-card'); ?>
             </a>
+            <?php if ($post_type === 'projets') : ?>
+                <div class="projet-overlay">
+                    <span>Voir le projet</span>
+                </div>
+            <?php endif; ?>
+        </div>
+    <?php elseif ($post_type === 'projets') : ?>
+        <!-- Image par défaut si pas d'image à la une pour les projets -->
+        <div class="<?php echo esc_attr($thumbnail_class); ?> default-thumbnail">
+            <div class="default-content">
+                <i class="fas fa-project-diagram"></i>
+                <p>Projet BTLabs</p>
+            </div>
         </div>
     <?php endif; ?>
     
