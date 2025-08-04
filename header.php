@@ -57,16 +57,3 @@
         </div>
     </header>
 
-    <?php
-    // Fallback menu function
-    function btlabs_fallback_menu() {
-        echo '<ul class="main-menu">';
-        echo '<li><a href="' . home_url('/') . '">Accueil</a></li>';
-        echo '<li><a href="' . home_url('/a-propos/') . '">À propos</a></li>';
-        echo '<li><a href="' . home_url('/services/') . '">Services</a></li>';
-        echo '<li><a href="' . home_url('/projets/') . '">Projets</a></li>';
-        echo '<li><a href="' . home_url('/equipe/') . '">Équipe</a></li>';
-        echo '<li><a href="' . home_url('/contact/') . '">Contact</a></li>';
-        echo '</ul>';
-    }
-    ?>
