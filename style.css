@@ -74,29 +74,6 @@ body {
     margin-top: 80px;
     min-height: calc(100vh - 160px);
 }
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-/* Footer */
-/* Footer styles consolidated in custom.css */
-.site-footer {
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
 /* Button styles moved to custom.css to avoid duplication */
 
 /* Responsive */
@@ -153,11 +130,6 @@ body {
     /* Position relative pour le container de navigation */
     .main-navigation {
         position: relative;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
     }
 }
 
