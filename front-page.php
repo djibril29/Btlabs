@@ -14,7 +14,7 @@
         <div class="carousel-container">
             
             <!-- Slide 1: Présentation -->
-            <div class="carousel-slide active" style="background: linear-gradient(135deg, rgba(0, 166, 81, 0.8) 60%, rgba(55, 175, 174, 0.8) 100%), url('<?php echo get_template_directory_uri(); ?>/assets/images/Biotox-images.png');">
+            <div class="carousel-slide active slide-presentation">
                 <div class="container">
                     <div class="hero-content">
                         <div class="slide-indicator">
@@ -51,7 +51,7 @@
                         $thumbnail_url = get_template_directory_uri() . '/assets/images/Biotox-images.png';
                     }
                     ?>
-                    <div class="carousel-slide" style="background: linear-gradient(135deg, rgba(0, 166, 81, 0.7) 0%, rgba(55, 175, 174, 0.7) 100%), url('<?php echo esc_url($thumbnail_url); ?>');">
+                    <div class="carousel-slide slide-project" data-background="<?php echo esc_url($thumbnail_url); ?>">
                         <div class="container">
                             <div class="hero-content">
                                 <div class="slide-indicator">

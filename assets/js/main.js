@@ -98,9 +98,19 @@
         });
 
         backToTop.on('click', function() {
-            $('html, body').animate({
-                scrollTop: 0
-            }, 800);
+            // Utiliser GSAP pour un scroll fluide si disponible
+            if (typeof gsap !== 'undefined') {
+                gsap.to(window, {
+                    duration: 1,
+                    scrollTo: 0,
+                    ease: 'power2.inOut'
+                });
+            } else {
+                // Fallback jQuery
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 1000);
+            }
         });
 
         // Form validation
@@ -154,6 +164,19 @@
                 }
             });
         }
+        
+        // Gestion des arrière-plans dynamiques du carrousel
+        function setupCarouselBackgrounds() {
+            $('.slide-project').each(function() {
+                var backgroundUrl = $(this).data('background');
+                if (backgroundUrl) {
+                    $(this).css('--project-bg', 'url(' + backgroundUrl + ')');
+                }
+            });
+        }
+        
+        // Initialiser les arrière-plans du carrousel
+        setupCarouselBackgrounds();
 
         $(window).on('scroll', animateOnScroll);
         animateOnScroll(); // Run on page load

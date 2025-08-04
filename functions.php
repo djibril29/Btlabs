@@ -51,8 +51,20 @@ function btlabs_scripts() {
     wp_enqueue_style('btlabs-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0.0');
     wp_enqueue_style('btlabs-extras', get_template_directory_uri() . '/assets/css/theme-extras.css', array(), '1.0.0');
     
-    // Enqueue JavaScript
-    wp_enqueue_script('btlabs-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
+    // GSAP Core
+    wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), '3.12.2', true);
+    
+    // GSAP ScrollTrigger
+    wp_enqueue_script('gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array('gsap'), '3.12.2', true);
+    
+    // GSAP TextPlugin (pour les animations de texte)
+    wp_enqueue_script('gsap-text', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js', array('gsap'), '3.12.2', true);
+    
+    // Enqueue JavaScript principal
+    wp_enqueue_script('btlabs-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'gsap'), '1.0.0', true);
+    
+    // Script GSAP personnalisé
+    wp_enqueue_script('btlabs-gsap', get_template_directory_uri() . '/assets/js/gsap-animations.js', array('gsap', 'gsap-scrolltrigger'), '1.0.0', true);
     
     // Localize script for AJAX
     wp_localize_script('btlabs-main', 'btlabs_ajax', array(
