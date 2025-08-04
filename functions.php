@@ -27,6 +27,10 @@ function btlabs_setup() {
     ));
     add_theme_support('customize-selective-refresh-widgets');
     
+    // Elementor compatibility
+    add_theme_support('elementor');
+    add_theme_support('elementor-pro');
+    
     // Register navigation menus
     register_nav_menus(array(
         'primary' => __('Menu Principal', 'btlabs'),
@@ -39,6 +43,33 @@ function btlabs_setup() {
     add_image_size('btlabs-thumbnail', 300, 200, true);
 }
 add_action('after_setup_theme', 'btlabs_setup');
+
+/**
+ * Elementor compatibility and optimization
+ */
+function btlabs_elementor_setup() {
+    // Disable default Elementor color schemes
+    update_option('elementor_disable_color_schemes', 'yes');
+    
+    // Disable default Elementor typography schemes
+    update_option('elementor_disable_typography_schemes', 'yes');
+    
+    // Set CSS print method to external for better performance
+    update_option('elementor_css_print_method', 'external');
+    
+    // Enable improved asset loading
+    update_option('elementor_optimized_dom_output', 'enabled');
+    
+    // Set container width to match theme
+    update_option('elementor_container_width', array(
+        'size' => 1200,
+        'unit' => 'px'
+    ));
+    
+    // Enable page transitions
+    update_option('elementor_page_transitions_library', 'yes');
+}
+add_action('elementor/init', 'btlabs_elementor_setup');
 
 /**
  * Enqueue scripts and styles
@@ -61,6 +92,53 @@ function btlabs_scripts() {
     ));
 }
 add_action('wp_enqueue_scripts', 'btlabs_scripts');
+
+/**
+ * Elementor CSS compatibility
+ */
+function btlabs_elementor_css_compatibility() {
+    // Add custom CSS for Elementor compatibility
+    $custom_css = "
+        /* Elementor compatibility with BTlabs theme */
+        .elementor-page .site-header {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .elementor-page .site-footer {
+            margin-top: 0;
+        }
+        
+        .elementor-section.elementor-section-stretched {
+            left: 0;
+            width: 100vw;
+        }
+        
+        .elementor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Ensure theme colors work with Elementor */
+        .elementor-widget-container {
+            color: var(--text-main);
+        }
+        
+        .elementor-heading-title {
+            color: var(--secondary-title);
+        }
+        
+        /* Responsive compatibility */
+        @media (max-width: 768px) {
+            .elementor-container {
+                padding: 0 1rem;
+            }
+        }
+    ";
+    
+    wp_add_inline_style('btlabs-custom', $custom_css);
+}
+add_action('wp_enqueue_scripts', 'btlabs_elementor_css_compatibility');
 
 /**
  * Register widget areas
@@ -88,6 +166,27 @@ function btlabs_widgets_init() {
             'after_title' => '</h3>',
         ));
     }
+    
+    // Elementor compatible widget areas
+    register_sidebar(array(
+        'name' => __('Zone Contact Accueil', 'btlabs'),
+        'id' => 'contact-homepage',
+        'description' => __('Zone pour le formulaire de contact sur la page d\'accueil', 'btlabs'),
+        'before_widget' => '<div class="contact-widget">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
+    
+    register_sidebar(array(
+        'name' => __('Zone CTA Accueil', 'btlabs'),
+        'id' => 'cta-homepage',
+        'description' => __('Zone pour les appels à l\'action sur la page d\'accueil', 'btlabs'),
+        'before_widget' => '<div class="cta-widget">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
 }
 add_action('widgets_init', 'btlabs_widgets_init');
 
