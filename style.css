@@ -9,92 +9,92 @@ Text Domain: btlabs
 
 /* Reset CSS */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; /* remove default margins on all elements */
+    padding: 0; /* remove default padding */
+    box-sizing: border-box; /* include padding and border within element's total width */
 }
 
 /* Ajout de la police Intro Rust */
 @font-face {
-    font-family: 'Intro Rust';
+    font-family: 'Intro Rust'; /* nom utilisé ensuite dans le CSS */
     src: url('assets/fonts/IntroRust-Regular.woff2') format('woff2'),
-         url('assets/fonts/IntroRust-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+         url('assets/fonts/IntroRust-Regular.woff') format('woff'); /* fournir plusieurs formats pour la compatibilité */
+    font-weight: normal; /* poids normal de la police */
+    font-style: normal; /* style standard (non italique) */
+    font-display: swap; /* afficher la police de secours pendant le chargement */
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
+    font-family: 'Arial', sans-serif; /* police par défaut pour le texte */
+    line-height: 1.6; /* espacement vertical pour améliorer la lisibilité */
+    color: #333; /* couleur de texte gris foncé facile à lire */
 }
 
 /* Header */
 .site-header {
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    background: #fff; /* fond blanc pour l'en-tête */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* ombre légère pour détacher visuellement l'en-tête */
+    position: fixed; /* rester visible même lors du défilement */
+    width: 100%; /* occuper toute la largeur de la fenêtre */
+    top: 0; /* placer l'en-tête en haut */
+    z-index: 1000; /* s'assurer qu'il reste au-dessus des autres éléments */
 }
 
 .site-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex; /* utiliser Flexbox pour aligner les éléments horizontalement */
+    justify-content: space-between; /* séparer le logo du menu */
+    align-items: center; /* centrer verticalement les éléments */
+    padding: 1rem 2rem; /* ajouter de l'espace autour de la navigation */
+    max-width: 1200px; /* limiter la largeur maximale */
+    margin: 0 auto; /* centrer la navigation sur la page */
 }
 
 /* Site logo color defined in custom.css */
 
 .main-menu {
-    display: flex;
-    list-style: none;
+    display: flex; /* afficher les éléments du menu les uns à côté des autres */
+    list-style: none; /* supprimer les puces des listes */
 }
 
 .main-menu li {
-    margin-left: 2rem;
+    margin-left: 2rem; /* espacement entre chaque élément du menu */
 }
 
 .main-menu a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    text-decoration: none; /* supprimer le soulignement des liens */
+    color: #333; /* couleur de texte par défaut pour les liens */
+    font-weight: 500; /* épaisseur de police moyenne */
+    transition: color 0.3s ease; /* animation douce lors du changement de couleur */
 }
 
 /* Menu hover color defined in custom.css */
 
 /* Main Content */
 .site-main {
-    margin-top: 80px;
-    min-height: calc(100vh - 160px);
+    margin-top: 80px; /* laisser de l'espace sous l'en-tête fixe */
+    min-height: calc(100vh - 160px); /* garantir que le contenu occupe la hauteur restante */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    max-width: 1200px; /* largeur maximale du contenu principal */
+    margin: 0 auto; /* centrer le contenu */
+    padding: 0 2rem; /* ajouter une marge intérieure horizontale */
 }
 
 /* Footer */
 /* Footer styles consolidated in custom.css */
 .site-footer {
-    padding: 2rem 0;
-    margin-top: auto;
+    padding: 2rem 0; /* espace autour du pied de page */
+    margin-top: auto; /* pousser le pied de page vers le bas lorsque la page est courte */
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    display: flex; /* aligner le contenu du pied de page sur une ligne */
+    justify-content: space-between; /* répartir les éléments */
+    align-items: center; /* centrer verticalement */
+    max-width: 1200px; /* largeur maximale du pied de page */
+    margin: 0 auto; /* centrer le bloc */
+    padding: 0 2rem; /* espacement interne horizontal */
 }
 
 /* Button styles moved to custom.css to avoid duplication */
@@ -102,76 +102,76 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .site-navigation {
-        flex-direction: column;
-        padding: 1rem;
+        flex-direction: column; /* empiler les éléments verticalement sur petit écran */
+        padding: 1rem; /* réduire l'espace autour de la navigation */
     }
-    
+
     /* Afficher le bouton hamburger sur mobile */
     .menu-toggle {
-        display: block;
+        display: block; /* rendre le bouton visible pour ouvrir le menu */
     }
-    
+
     /* Masquer le menu desktop sur mobile */
     .main-menu {
-        display: none;
-        margin-top: 1rem;
-        width: 100%;
-        background: #fff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        overflow: hidden;
+        display: none; /* cacher les liens de navigation par défaut */
+        margin-top: 1rem; /* espace au-dessus du menu déroulant */
+        width: 100%; /* occuper toute la largeur disponible */
+        background: #fff; /* fond blanc pour le menu */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* ombre pour le menu déroulant */
+        border-radius: 8px; /* coins arrondis */
+        overflow: hidden; /* masquer ce qui dépasse des coins arrondis */
     }
-    
+
     .main-menu.active {
-        display: block;
+        display: block; /* afficher le menu lorsque l'utilisateur clique sur le bouton */
     }
-    
+
     .main-menu li {
-        margin: 0;
-        border-bottom: 1px solid #eee;
+        margin: 0; /* supprimer l'espacement latéral */
+        border-bottom: 1px solid #eee; /* séparer chaque élément par une ligne */
     }
-    
+
     .main-menu li:last-child {
-        border-bottom: none;
+        border-bottom: none; /* retirer la ligne du dernier élément */
     }
-    
+
     .main-menu a {
-        display: block;
-        padding: 1rem 1.5rem;
-        color: #333;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
+        display: block; /* occuper toute la largeur pour faciliter le clic */
+        padding: 1rem 1.5rem; /* espace interne pour chaque lien */
+        color: #333; /* couleur de texte */
+        text-decoration: none; /* pas de soulignement */
+        font-weight: 500; /* poids moyen pour la lisibilité */
+        transition: all 0.3s ease; /* animation douce lors du survol */
     }
-    
+
     .main-menu a:hover {
-        background: #f8f8f8;
-        color: #00a651;
-        padding-left: 2rem;
+        background: #f8f8f8; /* couleur de fond au survol */
+        color: #00a651; /* couleur de texte verte au survol */
+        padding-left: 2rem; /* léger décalage à gauche pour l'effet */
     }
-    
+
     /* Position relative pour le container de navigation */
     .main-navigation {
-        position: relative;
+        position: relative; /* nécessaire pour positionner les éléments internes */
     }
-    
+
     .footer-content {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column; /* empiler les éléments du pied de page sur petit écran */
+        text-align: center; /* centrer le texte */
     }
 }
 
 /* Desktop styles */
 @media (min-width: 769px) {
     .menu-toggle {
-        display: none;
+        display: none; /* masquer le bouton hamburger sur les grands écrans */
     }
-    
+
     .main-menu {
-        display: flex !important;
+        display: flex !important; /* rétablir l'affichage horizontal du menu */
     }
-    
+
     .main-menu li {
-        margin-left: 2rem;
+        margin-left: 2rem; /* espacement entre les éléments du menu */
     }
-} 
+}
