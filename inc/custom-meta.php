@@ -337,81 +337,43 @@ function btlabs_save_meta($post_id) {
     if (!isset($_POST['btlabs_meta_nonce']) || !wp_verify_nonce($_POST['btlabs_meta_nonce'], 'btlabs_save_meta')) {
         return;
     }
-    
+
     // Check if user has permissions to save data
     if (!current_user_can('edit_post', $post_id)) {
         return;
     }
-    
+
     // Check if not an autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
     }
-    
-    // Save team member meta
-    if (isset($_POST['fonction'])) {
-        update_post_meta($post_id, 'fonction', sanitize_text_field($_POST['fonction']));
-    }
-    if (isset($_POST['email'])) {
-        update_post_meta($post_id, 'email', sanitize_email($_POST['email']));
-    }
-    if (isset($_POST['telephone'])) {
-        update_post_meta($post_id, 'telephone', sanitize_text_field($_POST['telephone']));
-    }
-    if (isset($_POST['linkedin'])) {
-        update_post_meta($post_id, 'linkedin', esc_url_raw($_POST['linkedin']));
-    }
-    if (isset($_POST['specialites'])) {
-        update_post_meta($post_id, 'specialites', sanitize_textarea_field($_POST['specialites']));
-    }
-    
-    // Save project meta
-    if (isset($_POST['client'])) {
-        update_post_meta($post_id, 'client', sanitize_text_field($_POST['client']));
-    }
-    if (isset($_POST['localisation'])) {
-        update_post_meta($post_id, 'localisation', sanitize_text_field($_POST['localisation']));
-    }
-    if (isset($_POST['duree'])) {
-        update_post_meta($post_id, 'duree', sanitize_text_field($_POST['duree']));
-    }
-    if (isset($_POST['budget'])) {
-        update_post_meta($post_id, 'budget', sanitize_text_field($_POST['budget']));
-    }
-    if (isset($_POST['services'])) {
-        update_post_meta($post_id, 'services', sanitize_textarea_field($_POST['services']));
-    }
-    if (isset($_POST['technologies'])) {
-        update_post_meta($post_id, 'technologies', sanitize_textarea_field($_POST['technologies']));
-    }
-    if (isset($_POST['resultats'])) {
-        update_post_meta($post_id, 'resultats', sanitize_textarea_field($_POST['resultats']));
-    }
-    if (isset($_POST['gallery_images'])) {
-        update_post_meta($post_id, 'gallery_images', sanitize_text_field($_POST['gallery_images']));
-    }
-    if (isset($_POST['statut'])) {
-        update_post_meta($post_id, 'statut', sanitize_text_field($_POST['statut']));
-    }
-    if (isset($_POST['date_debut'])) {
-        update_post_meta($post_id, 'date_debut', sanitize_text_field($_POST['date_debut']));
-    }
-    if (isset($_POST['date_fin'])) {
-        update_post_meta($post_id, 'date_fin', sanitize_text_field($_POST['date_fin']));
-    }
-    
-    // Save service meta
-    if (isset($_POST['duree'])) {
-        update_post_meta($post_id, 'duree', sanitize_text_field($_POST['duree']));
-    }
-    if (isset($_POST['tarif'])) {
-        update_post_meta($post_id, 'tarif', sanitize_text_field($_POST['tarif']));
-    }
-    if (isset($_POST['disponibilite'])) {
-        update_post_meta($post_id, 'disponibilite', sanitize_text_field($_POST['disponibilite']));
-    }
-    if (isset($_POST['expertise'])) {
-        update_post_meta($post_id, 'expertise', sanitize_textarea_field($_POST['expertise']));
+
+    $meta_fields = [
+        'fonction' => 'sanitize_text_field',
+        'email' => 'sanitize_email',
+        'telephone' => 'sanitize_text_field',
+        'linkedin' => 'esc_url_raw',
+        'specialites' => 'sanitize_textarea_field',
+        'client' => 'sanitize_text_field',
+        'localisation' => 'sanitize_text_field',
+        'duree' => 'sanitize_text_field',
+        'budget' => 'sanitize_text_field',
+        'services' => 'sanitize_textarea_field',
+        'technologies' => 'sanitize_textarea_field',
+        'resultats' => 'sanitize_textarea_field',
+        'gallery_images' => 'sanitize_text_field',
+        'statut' => 'sanitize_text_field',
+        'date_debut' => 'sanitize_text_field',
+        'date_fin' => 'sanitize_text_field',
+        'tarif' => 'sanitize_text_field',
+        'disponibilite' => 'sanitize_text_field',
+        'expertise' => 'sanitize_textarea_field',
+    ];
+
+    foreach ($meta_fields as $field => $sanitize_callback) {
+        if (isset($_POST[$field])) {
+            update_post_meta($post_id, $field, call_user_func($sanitize_callback, $_POST[$field]));
+        }
     }
 }
 add_action('save_post', 'btlabs_save_meta'); 

@@ -10,6 +10,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Define theme version for cache busting
+if (!defined('BTLABS_VERSION')) {
+    define('BTLABS_VERSION', wp_get_theme()->get('Version'));
+}
+
 /**
  * Theme Setup
  */
@@ -45,11 +50,11 @@ add_action('after_setup_theme', 'btlabs_setup');
  */
 function btlabs_scripts() {
     // Enqueue main stylesheet
-    wp_enqueue_style('btlabs-style', get_stylesheet_uri(), array(), '1.0.0');
-    
+    wp_enqueue_style('btlabs-style', get_stylesheet_uri(), array(), BTLABS_VERSION);
+
     // Enqueue custom CSS
-    wp_enqueue_style('btlabs-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0.0');
-    wp_enqueue_style('btlabs-extras', get_template_directory_uri() . '/assets/css/theme-extras.css', array(), '1.0.0');
+    wp_enqueue_style('btlabs-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), BTLABS_VERSION);
+    wp_enqueue_style('btlabs-extras', get_template_directory_uri() . '/assets/css/theme-extras.css', array(), BTLABS_VERSION);
     
     // GSAP Core
     wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), '3.12.2', true);
@@ -61,10 +66,10 @@ function btlabs_scripts() {
     wp_enqueue_script('gsap-text', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js', array('gsap'), '3.12.2', true);
     
     // Enqueue JavaScript principal
-    wp_enqueue_script('btlabs-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'gsap'), '1.0.0', true);
+    wp_enqueue_script('btlabs-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'gsap'), BTLABS_VERSION, true);
     
     // Script GSAP personnalisé
-    wp_enqueue_script('btlabs-gsap', get_template_directory_uri() . '/assets/js/gsap-animations.js', array('gsap', 'gsap-scrolltrigger'), '1.0.0', true);
+    wp_enqueue_script('btlabs-gsap', get_template_directory_uri() . '/assets/js/gsap-animations.js', array('gsap', 'gsap-scrolltrigger'), BTLABS_VERSION, true);
     
     // Localize script for AJAX
     wp_localize_script('btlabs-main', 'btlabs_ajax', array(
@@ -243,7 +248,7 @@ add_action('init', 'btlabs_custom_taxonomies');
  */
 function btlabs_admin_customization() {
     // Add custom admin styles
-    wp_enqueue_style('btlabs-admin', get_template_directory_uri() . '/assets/css/admin.css');
+    wp_enqueue_style('btlabs-admin', get_template_directory_uri() . '/assets/css/admin.css', array(), BTLABS_VERSION);
 }
 add_action('admin_enqueue_scripts', 'btlabs_admin_customization');
 
