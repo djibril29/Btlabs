@@ -1,49 +1,47 @@
 /* Palette principale */
 :root {
-    --primary-color: #00a651;
-    --secondary-title: #37afae;
-    --highlight: #af3774;
-    --footer-bg: #070606;
-    --text-main: #333;
+    --primary-color: #00a651; /* Vert principal utilisé pour les boutons et accents */
+    --secondary-title: #37afae; /* Couleur turquoise pour les titres */
+    --highlight: #af3774; /* Rose pour les éléments mis en valeur */
+    --footer-bg: #070606; /* Fond sombre du pied de page */
+    --text-main: #333; /* Couleur par défaut du texte */
 }
 html {
-    margin-top: 0 !important;
+    margin-top: 0 !important; /* Supprime l'espace ajouté par la barre d'admin WordPress */
 }
 
 /* ===== ARRIÈRE-PLAN GLOBAL DU SITE ===== */
 body {
-    background: url('../images/fleur-background.png') no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
+    background: url('../images/fleur-background.png') no-repeat center center fixed; /* Image de fond centrée et fixe */
+    background-size: cover; /* L'image couvre tout l'écran sans déformation */
+    position: relative; /* Permet de positionner d'autres éléments par rapport au corps */
 }
 
 /* Container standardisé pour l'alignement */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    box-sizing: border-box;
+    max-width: 1200px; /* Limite la largeur pour garder un texte lisible */
+    margin: 0 auto; /* Centre horizontalement le contenu */
+    padding: 0 2rem; /* Ajoute de l'espace de chaque côté */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 }
 
 /* Alignement du header avec le contenu */
 .site-header .site-navigation {
-    max-width: 1200px;
-    margin: 1.5rem auto;
-    padding: 0 2rem;
-    box-sizing: border-box;
+    max-width: 1200px; /* Contraint la largeur de la navigation */
+    margin: 1.5rem auto; /* Espace vertical et centrage */
+    padding: 0 2rem; /* Espace horizontal autour du menu */
+    box-sizing: border-box; /* Empêche le padding d'élargir le bloc */
 }
 
 /* Amélioration de l'alignement du hero */
 .hero-section .container {
-    
-    display: flex;
-    align-items: center;
-    
+    display: flex; /* Aligne le contenu du hero côte à côte */
+    align-items: center; /* Centre verticalement les éléments */
 }
 
 .hero-content {
-    max-width: 900px;
-    width: 100%;
+    max-width: 900px; /* Empêche le texte du hero d'être trop large */
+    width: 100%; /* S'adapte à la largeur du conteneur */
 }
 
 /* Responsive pour les containers */
@@ -121,157 +119,158 @@ body {
     backdrop-filter: blur(10px);
 }
 
+/* Couleurs spécifiques pour chaque élément du fil d'Ariane */
 .breadcrumb-trail span:first-child {
-    color: var(--primary-color);
-    font-weight: 600;
+    color: var(--primary-color); /* Lien vers l'accueil en vert */
+    font-weight: 600; /* Met en évidence le premier élément */
 }
 
 .breadcrumb-trail span:nth-child(2) {
-    margin: 0 0.5rem;
-    color: #666;
+    margin: 0 0.5rem; /* Espace autour de la flèche séparatrice */
+    color: #666; /* Couleur grise discrète pour le séparateur */
 }
 
 .breadcrumb-trail span:last-child {
-    color: var(--secondary-title);
+    color: var(--secondary-title); /* Page courante en turquoise */
 }
 
 /* Indicateur de slide */
 .slide-indicator {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    backdrop-filter: blur(10px);
+    position: absolute; /* Positionné par rapport au carrousel */
+    top: 2rem; /* Placé en haut du carrousel */
+    right: 2rem; /* Aligné à droite */
+    background: rgba(255,255,255,0.2); /* Fond translucide pour la lisibilité */
+    color: #fff; /* Texte blanc pour contraster */
+    padding: 0.5rem 1rem; /* Espace intérieur autour du texte */
+    border-radius: 20px; /* Bords arrondis en forme de pilule */
+    font-size: 0.9rem; /* Taille de texte discrète */
+    backdrop-filter: blur(10px); /* Flou de fond pour un effet verre dépoli */
 }
 
 /* Badge du projet */
 .project-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    margin-bottom: 1rem;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3);
+    display: inline-block; /* Permet de définir marges et padding */
+    background: rgba(255,255,255,0.2); /* Badge translucide */
+    color: #fff; /* Texte blanc pour contraster */
+    padding: 0.5rem 1rem; /* Espace intérieur */
+    border-radius: 25px; /* Bords très arrondis */
+    margin-bottom: 1rem; /* Espace avec les éléments suivants */
+    backdrop-filter: blur(10px); /* Effet verre dépoli */
+    border: 1px solid rgba(255,255,255,0.3); /* Légère bordure blanche */
 }
 
 /* Titres et textes */
 .hero-title, .project-title {
-    font-family: 'Intro Rust', Arial, sans-serif;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    text-align: left;
+    font-family: 'Intro Rust', Arial, sans-serif; /* Police décorative pour les titres */
+    color: #fff; /* Texte blanc sur les images de fond */
+    margin-bottom: 1.5rem; /* Espace après le titre */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Ombre pour améliorer la lisibilité */
+    text-align: left; /* Aligne le texte à gauche */
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 3.5rem; /* Taille plus grande pour le hero principal */
 }
 
 .project-title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 3rem; /* Légèrement plus petit pour les projets */
+    margin-bottom: 1rem; /* Moins d'espace sous le titre */
 }
 
 .hero-subtitle, .project-excerpt {
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    text-align: left;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Petite ombre pour la lisibilité */
+    text-align: left; /* Aligne le texte à gauche */
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    margin: 1.5rem 0;
+    font-size: 1.5rem; /* Taille du sous-titre */
+    margin: 1.5rem 0; /* Espace au-dessus et au-dessous */
 }
 
 .project-excerpt {
-    font-size: 1.3rem;
-    margin: 1.5rem 0;
-    max-width: 600px;
-    line-height: 1.6;
+    font-size: 1.3rem; /* Texte légèrement plus grand que le corps */
+    margin: 1.5rem 0; /* Espacement vertical */
+    max-width: 600px; /* Limite la largeur pour une meilleure lecture */
+    line-height: 1.6; /* Hauteur de ligne pour l'aération du texte */
 }
 
 /* Boutons d'action */
 .project-actions {
-    display: flex;
-    gap: 1rem;
+    display: flex; /* Place les boutons sur une ligne */
+    gap: 1rem; /* Espace entre les boutons */
 }
 
 .btn-primary, .btn-secondary {
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    display: inline-block;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    font-size: 1.1rem; /* Texte légèrement plus grand */
+    padding: 1rem 2rem; /* Taille confortable pour cliquer */
+    border-radius: 50px; /* Forme de pillule */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombre pour un effet de relief */
+    display: inline-block; /* Permet de définir largeur et hauteur */
+    text-decoration: none; /* Supprime le soulignement des liens */
+    transition: all 0.3s ease; /* Animation douce lors des interactions */
 }
 
 .btn-primary {
-    background: var(--primary-color);
-    color: #fff;
+    background: var(--primary-color); /* Bouton principal en vert */
+    color: #fff; /* Texte blanc */
 }
 
 .btn-secondary {
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.2); /* Bouton secondaire translucide */
+    color: #fff; /* Texte blanc */
+    border: 2px solid rgba(255,255,255,0.3); /* Fine bordure pour le contraste */
+    backdrop-filter: blur(10px); /* Effet de flou de fond */
 }
 
 /* Navigation du carrousel */
 .carousel-nav {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1rem;
-    z-index: 10;
+    position: absolute; /* Placée par rapport au carrousel */
+    bottom: 2rem; /* À 2rem du bas */
+    left: 50%; /* Centrée horizontalement */
+    transform: translateX(-50%); /* Déplacement pour centrer */
+    display: flex; /* Affiche les points côte à côte */
+    gap: 1rem; /* Espace entre les points */
+    z-index: 10; /* Au-dessus des slides */
 }
 
 .nav-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.5);
-    border: 2px solid rgba(255,255,255,0.8);
-    cursor: pointer;
-    transition: all 0.3s ease;
+    width: 12px; /* Taille du point */
+    height: 12px; /* Taille du point */
+    border-radius: 50%; /* Forme circulaire */
+    background: rgba(255,255,255,0.5); /* Couleur par défaut */
+    border: 2px solid rgba(255,255,255,0.8); /* Légère bordure blanche */
+    cursor: pointer; /* Le curseur indique que l'élément est cliquable */
+    transition: all 0.3s ease; /* Animation lors du survol ou de l'activation */
 }
 
 .nav-dot.active {
-    background: #fff;
-    transform: scale(1.3);
+    background: #fff; /* Point blanc lorsqu'il correspond à la slide active */
+    transform: scale(1.3); /* Agrandit légèrement le point actif */
 }
 
 /* Boutons de navigation */
 .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    z-index: 10;
+    position: absolute; /* Placés au-dessus des slides */
+    top: 50%; /* Alignés verticalement au centre */
+    transform: translateY(-50%); /* Ajuste pour un centrage parfait */
+    background: rgba(255,255,255,0.2); /* Boutons translucides */
+    color: #fff; /* Icônes ou texte en blanc */
+    border: none; /* Supprime la bordure par défaut */
+    width: 50px; /* Taille carrée du bouton */
+    height: 50px; /* Taille carrée du bouton */
+    border-radius: 50%; /* Forme circulaire */
+    cursor: pointer; /* Indique que le bouton est cliquable */
+    backdrop-filter: blur(10px); /* Effet verre dépoli */
+    transition: all 0.3s ease; /* Animation au survol */
+    z-index: 10; /* Au-dessus des slides */
 }
 
 .carousel-btn.prev {
-    left: 2rem;
+    left: 2rem; /* Décalage vers la gauche */
 }
 
 .carousel-btn.next {
-    right: 2rem;
+    right: 2rem; /* Décalage vers la droite */
 }
 
 /* ===== ANIMATIONS ===== */
@@ -728,153 +727,153 @@ h1, h2, h3, h4, h5, h6, .entry-title, .page-title {
 
 /* Posts Grid */
 .posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
+    display: grid; /* Utilise CSS Grid pour l'agencement des articles */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Crée des colonnes flexibles de minimum 300px */
+    gap: 2rem; /* Espace entre les cartes */
+    margin: 2rem 0; /* Espace autour de la grille */
 }
 
 .post-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff; /* Fond blanc pour chaque carte */
+    border-radius: 8px; /* Bords arrondis */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Légère ombre pour le relief */
+    overflow: hidden; /* Cache le contenu qui dépasse */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
 }
 
 .post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transform: translateY(-5px); /* Lève légèrement la carte */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* Ombre plus marquée */
 }
 
 .post-thumbnail img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: 100%; /* L'image s'étend sur toute la largeur */
+    height: 200px; /* Hauteur fixe */
+    object-fit: cover; /* Rogne l'image pour remplir l'espace */
 }
 
 .post-content {
-    padding: 1.5rem;
+    padding: 1.5rem; /* Espace interne autour du texte */
 }
 
 .post-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem; /* Espace sous le titre */
 }
 
 .post-title a {
-    color: #333;
-    text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: 600;
+    color: #333; /* Texte sombre par défaut */
+    text-decoration: none; /* Pas de soulignement */
+    font-size: 1.25rem; /* Taille de police du titre */
+    font-weight: 600; /* Titre en gras */
 }
 
 .post-title a:hover {
-    color: #2c5aa0;
+    color: #2c5aa0; /* Change la couleur au survol */
 }
 
 .post-meta {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    color: #666; /* Informations en gris */
+    font-size: 0.9rem; /* Taille de police plus petite */
+    margin-bottom: 1rem; /* Espace sous les métadonnées */
 }
 
 .post-meta span {
-    margin-right: 1rem;
+    margin-right: 1rem; /* Espace entre les éléments */
 }
 
 .post-excerpt {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    color: #555; /* Texte gris foncé */
+    line-height: 1.6; /* Hauteur de ligne pour aération */
+    margin-bottom: 1rem; /* Espace sous l'extrait */
 }
 
 .read-more {
-    display: inline-block;
-    background: #2c5aa0;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    display: inline-block; /* Permet d'ajouter du padding */
+    background: #2c5aa0; /* Bouton bleu */
+    color: #fff; /* Texte blanc */
+    padding: 0.5rem 1rem; /* Espace interne */
+    text-decoration: none; /* Pas de soulignement */
+    border-radius: 4px; /* Coins arrondis */
+    transition: background 0.3s ease; /* Animation sur la couleur de fond */
 }
 
 .read-more:hover {
-    background: #1e3f6b;
-    color: #fff;
+    background: #1e3f6b; /* Couleur plus foncée au survol */
+    color: #fff; /* Maintient le texte blanc */
 }
 
 /* Page Content */
 .page-content {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin: 2rem 0;
+    background: #fff; /* Bloc de contenu sur fond blanc */
+    padding: 2rem; /* Espace intérieur pour aérer le texte */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Ombre légère */
+    margin: 2rem 0; /* Espace vertical autour du bloc */
 }
 
 .entry-title {
-    color: #2c5aa0;
-    margin-bottom: 1rem;
-    font-size: 2rem;
+    color: #2c5aa0; /* Titre principal en bleu */
+    margin-bottom: 1rem; /* Espace sous le titre */
+    font-size: 2rem; /* Taille du titre */
 }
 
 .page-thumbnail {
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Espace sous l'image d'en-tête */
 }
 
 .page-thumbnail img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 100%; /* Image responsive */
+    height: auto; /* Conserve les proportions */
+    border-radius: 8px; /* Coins arrondis */
 }
 
 /* Single Post */
 .single-post {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin: 2rem 0;
+    background: #fff; /* Bloc principal de l'article */
+    padding: 2rem; /* Espace intérieur */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Ombre légère */
+    margin: 2rem 0; /* Espacement extérieur */
 }
 
 .entry-meta {
-    color: #666;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    color: #666; /* Métadonnées en gris */
+    margin-bottom: 1rem; /* Espace sous la barre d'informations */
+    padding-bottom: 1rem; /* Ajoute un espace interne en bas */
+    border-bottom: 1px solid #eee; /* Séparateur discret */
 }
 
 .entry-meta span {
-    margin-right: 1rem;
+    margin-right: 1rem; /* Espacement entre les éléments */
 }
 
 .entry-content {
-    line-height: 1.8;
-    color: #333;
+    line-height: 1.8; /* Hauteur de ligne pour faciliter la lecture */
+    color: #333; /* Couleur du texte principal */
 }
 
 .entry-content h2,
 .entry-content h3,
 .entry-content h4 {
-    color: #2c5aa0;
-    margin: 1.5rem 0 1rem 0;
+    color: #2c5aa0; /* Titres secondaires en bleu */
+    margin: 1.5rem 0 1rem 0; /* Espacement autour des titres */
 }
 
 .entry-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Espacement entre les paragraphes */
 }
 
 .entry-content ul,
 .entry-content ol {
-    margin-bottom: 1rem;
-    padding-left: 2rem;
+    margin-bottom: 1rem; /* Espace sous les listes */
+    padding-left: 2rem; /* Indentation des listes */
 }
 
 .entry-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 1rem 0;
+    max-width: 100%; /* Images responsives */
+    height: auto; /* Conserve les proportions */
+    border-radius: 8px; /* Coins arrondis */
+    margin: 1rem 0; /* Espacement vertical autour de l'image */
 }
 
 /* Projects */
