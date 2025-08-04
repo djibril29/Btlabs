@@ -1,9 +1,10 @@
     <footer id="colophon" class="site-footer">
         <div class="footer-content">
             <div class="footer-widgets">
+                <!-- First footer widget area -->
                 <div class="footer-widget-area">
                     <?php if (is_active_sidebar('footer-1')) : ?>
-                        <?php dynamic_sidebar('footer-1'); ?>
+                        <?php dynamic_sidebar('footer-1'); // Display widgets if assigned ?>
                     <?php else : ?>
                         <div class="widget">
                             <h3 class="widget-title">BTlabs</h3>
@@ -11,7 +12,8 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                
+
+                <!-- Second footer widget area -->
                 <div class="footer-widget-area">
                     <?php if (is_active_sidebar('footer-2')) : ?>
                         <?php dynamic_sidebar('footer-2'); ?>
@@ -27,7 +29,8 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                
+
+                <!-- Third footer widget area -->
                 <div class="footer-widget-area">
                     <?php if (is_active_sidebar('footer-3')) : ?>
                         <?php dynamic_sidebar('footer-3'); ?>
@@ -41,19 +44,20 @@
                     <?php endif; ?>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-info">
                     <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Tous droits réservés.</p>
                 </div>
-                
+
                 <div class="footer-menu">
                     <?php
+                    // Display the footer navigation menu if it exists
                     wp_nav_menu(array(
                         'theme_location' => 'footer',
-                        'menu_class' => 'footer-menu-list',
-                        'container' => false,
-                        'fallback_cb' => false,
+                        'menu_class'     => 'footer-menu-list',
+                        'container'      => false,
+                        'fallback_cb'    => false,
                     ));
                     ?>
                 </div>
@@ -62,7 +66,7 @@
     </footer>
 </div><!-- #page -->
 
-<?php wp_footer(); ?>
+<?php wp_footer(); /* WordPress hook for footer scripts */ ?>
 
 </body>
-</html> 
+</html>

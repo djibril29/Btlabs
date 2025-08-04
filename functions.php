@@ -7,11 +7,13 @@
 
 // Prevent direct access
 if (!defined('ABSPATH')) {
+    // Exit if accessed directly to avoid security issues
     exit;
 }
 
 // Define theme version for cache busting
 if (!defined('BTLABS_VERSION')) {
+    // Use the theme's version number to help browsers cache assets
     define('BTLABS_VERSION', wp_get_theme()->get('Version'));
 }
 
@@ -19,10 +21,13 @@ if (!defined('BTLABS_VERSION')) {
  * Theme Setup
  */
 function btlabs_setup() {
-    // Add theme support for various features
+    // Enable featured images for posts and pages
     add_theme_support('post-thumbnails');
+    // Let WordPress manage the document title
     add_theme_support('title-tag');
+    // Allow uploading and displaying a custom logo
     add_theme_support('custom-logo');
+    // Use HTML5 markup for the listed features
     add_theme_support('html5', array(
         'search-form',
         'comment-form',
@@ -30,18 +35,19 @@ function btlabs_setup() {
         'gallery',
         'caption',
     ));
+    // Refresh widgets in the Customizer without reloading the page
     add_theme_support('customize-selective-refresh-widgets');
-    
-    // Register navigation menus
+
+    // Declare the locations where menus can be assigned
     register_nav_menus(array(
-        'primary' => __('Menu Principal', 'btlabs'),
-        'footer' => __('Menu Footer', 'btlabs'),
+        'primary' => __('Menu Principal', 'btlabs'), // Main navigation at top
+        'footer'  => __('Menu Footer', 'btlabs'),    // Links in the footer
     ));
-    
-    // Add image sizes
-    add_image_size('btlabs-hero', 1200, 600, true);
-    add_image_size('btlabs-card', 400, 300, true);
-    add_image_size('btlabs-thumbnail', 300, 200, true);
+
+    // Define custom image sizes used in templates
+    add_image_size('btlabs-hero', 1200, 600, true);      // Large banner image
+    add_image_size('btlabs-card', 400, 300, true);       // Image for cards
+    add_image_size('btlabs-thumbnail', 300, 200, true);  // Small thumbnail
 }
 add_action('after_setup_theme', 'btlabs_setup');
 
@@ -49,32 +55,32 @@ add_action('after_setup_theme', 'btlabs_setup');
  * Enqueue scripts and styles
  */
 function btlabs_scripts() {
-    // Enqueue main stylesheet
+    // Load the main stylesheet that comes with the theme
     wp_enqueue_style('btlabs-style', get_stylesheet_uri(), array(), BTLABS_VERSION);
 
-    // Enqueue custom CSS
+    // Load additional CSS files located in the assets folder
     wp_enqueue_style('btlabs-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), BTLABS_VERSION);
     wp_enqueue_style('btlabs-extras', get_template_directory_uri() . '/assets/css/theme-extras.css', array(), BTLABS_VERSION);
-    
-    // GSAP Core
+
+    // Add the core GSAP animation library from a CDN
     wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), '3.12.2', true);
-    
-    // GSAP ScrollTrigger
+
+    // Add the GSAP ScrollTrigger plugin
     wp_enqueue_script('gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array('gsap'), '3.12.2', true);
-    
-    // GSAP TextPlugin (pour les animations de texte)
+
+    // Add the GSAP TextPlugin for animating text
     wp_enqueue_script('gsap-text', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js', array('gsap'), '3.12.2', true);
-    
-    // Enqueue JavaScript principal
+
+    // Load the main JavaScript file for the theme
     wp_enqueue_script('btlabs-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'gsap'), BTLABS_VERSION, true);
-    
-    // Script GSAP personnalisé
+
+    // Load custom GSAP animations specific to this theme
     wp_enqueue_script('btlabs-gsap', get_template_directory_uri() . '/assets/js/gsap-animations.js', array('gsap', 'gsap-scrolltrigger'), BTLABS_VERSION, true);
-    
-    // Localize script for AJAX
+
+    // Pass PHP data to the main JavaScript file for AJAX requests
     wp_localize_script('btlabs-main', 'btlabs_ajax', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('btlabs_nonce'),
+        'ajax_url' => admin_url('admin-ajax.php'),      // URL to handle AJAX requests
+        'nonce'    => wp_create_nonce('btlabs_nonce'),  // Security token
     ));
 }
 add_action('wp_enqueue_scripts', 'btlabs_scripts');
@@ -83,26 +89,27 @@ add_action('wp_enqueue_scripts', 'btlabs_scripts');
  * Register widget areas
  */
 function btlabs_widgets_init() {
+    // Register the main sidebar shown on blog posts
     register_sidebar(array(
-        'name' => __('Sidebar Principal', 'btlabs'),
-        'id' => 'sidebar-1',
-        'description' => __('Widgets de la barre latérale principale', 'btlabs'),
+        'name'          => __('Sidebar Principal', 'btlabs'),
+        'id'            => 'sidebar-1',
+        'description'   => __('Widgets de la barre latérale principale', 'btlabs'),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget' => '</section>',
-        'before_title' => '<h2 class="widget-title">',
-        'after_title' => '</h2>',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
     ));
-    
-    // Register footer widgets using a loop to reduce code duplication
+
+    // Register three footer widget areas using a loop
     for ($i = 1; $i <= 3; $i++) {
         register_sidebar(array(
-            'name' => sprintf(__('Footer Widget %d', 'btlabs'), $i),
-            'id' => 'footer-' . $i,
-            'description' => sprintf(__('Widget %d du footer', 'btlabs'), $i),
+            'name'          => sprintf(__('Footer Widget %d', 'btlabs'), $i),
+            'id'            => 'footer-' . $i,
+            'description'   => sprintf(__('Widget %d du footer', 'btlabs'), $i),
             'before_widget' => '<div id="%1$s" class="widget %2$s">',
-            'after_widget' => '</div>',
-            'before_title' => '<h3 class="widget-title">',
-            'after_title' => '</h3>',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h3 class="widget-title">',
+            'after_title'   => '</h3>',
         ));
     }
 }
@@ -112,6 +119,7 @@ add_action('widgets_init', 'btlabs_widgets_init');
  * Custom excerpt length
  */
 function btlabs_excerpt_length($length) {
+    // Limit automatic excerpts to 20 words
     return 20;
 }
 add_filter('excerpt_length', 'btlabs_excerpt_length');
@@ -120,6 +128,7 @@ add_filter('excerpt_length', 'btlabs_excerpt_length');
  * Custom excerpt more
  */
 function btlabs_excerpt_more($more) {
+    // Replace default excerpt suffix with ellipsis
     return '...';
 }
 add_filter('excerpt_more', 'btlabs_excerpt_more');
@@ -128,7 +137,7 @@ add_filter('excerpt_more', 'btlabs_excerpt_more');
  * Add custom post types for BTlabs
  */
 function btlabs_custom_post_types() {
-    // Projets
+    // Custom post type for projects
     register_post_type('projets', array(
         'labels' => array(
             'name' => 'Projets',
@@ -149,7 +158,7 @@ function btlabs_custom_post_types() {
         'rewrite' => array('slug' => 'projets')
     ));
     
-    // Services
+    // Custom post type for services
     register_post_type('services', array(
         'labels' => array(
             'name' => 'Services',
@@ -170,7 +179,7 @@ function btlabs_custom_post_types() {
         'rewrite' => array('slug' => 'services')
     ));
     
-    // Équipe
+    // Custom post type for team members
     register_post_type('equipe', array(
         'labels' => array(
             'name' => 'Équipe',
@@ -197,7 +206,7 @@ add_action('init', 'btlabs_custom_post_types');
  * Add custom taxonomies
  */
 function btlabs_custom_taxonomies() {
-    // Catégories de projets
+    // Hierarchical categories for projects
     register_taxonomy('categorie_projet', 'projets', array(
         'labels' => array(
             'name' => 'Catégories de projets',
@@ -219,7 +228,7 @@ function btlabs_custom_taxonomies() {
         'rewrite' => array('slug' => 'categorie-projet')
     ));
     
-    // Types de services
+    // Hierarchical categories for services
     register_taxonomy('type_service', 'services', array(
         'labels' => array(
             'name' => 'Types de services',
@@ -247,7 +256,7 @@ add_action('init', 'btlabs_custom_taxonomies');
  * Customize admin
  */
 function btlabs_admin_customization() {
-    // Add custom admin styles
+    // Load a custom stylesheet in the WordPress admin area
     wp_enqueue_style('btlabs-admin', get_template_directory_uri() . '/assets/css/admin.css', array(), BTLABS_VERSION);
 }
 add_action('admin_enqueue_scripts', 'btlabs_admin_customization');
@@ -256,13 +265,13 @@ add_action('admin_enqueue_scripts', 'btlabs_admin_customization');
  * Security enhancements
  */
 function btlabs_security_enhancements() {
-    // Remove WordPress version
+    // Remove WordPress version from the page head
     remove_action('wp_head', 'wp_generator');
-    
-    // Disable XML-RPC
+
+    // Disable XML-RPC to reduce attack surface
     add_filter('xmlrpc_enabled', '__return_false');
-    
-    // Hide login errors
+
+    // Replace detailed login error messages with a generic one
     add_filter('login_errors', function() {
         return 'Erreur de connexion';
     });
@@ -277,8 +286,8 @@ function btlabs_performance_optimizations() {
     remove_action('wp_head', 'wlwmanifest_link');
     remove_action('wp_head', 'rsd_link');
     remove_action('wp_head', 'wp_shortlink_wp_head');
-    
-    // Disable emojis
+
+    // Disable emojis to reduce script loading
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('wp_print_styles', 'print_emoji_styles');
 }
@@ -287,17 +296,20 @@ add_action('init', 'btlabs_performance_optimizations');
 /**
  * Include custom meta fields
  */
+// Include file that registers custom meta boxes
 require get_template_directory() . '/inc/custom-meta.php';
 
 /**
  * Include theme options
  */
+// Include file that defines theme options in the Customizer
 require get_template_directory() . '/inc/theme-options.php';
 
 /**
  * Fallback menu function
  */
 function btlabs_fallback_menu() {
+    // Display a simple menu if no custom menu is assigned
     echo '<ul class="main-menu">';
     echo '<li><a href="' . home_url('/') . '">Accueil</a></li>';
     echo '<li><a href="' . home_url('/a-propos/') . '">À propos</a></li>';
@@ -306,4 +318,4 @@ function btlabs_fallback_menu() {
     echo '<li><a href="' . home_url('/equipe/') . '">Équipe</a></li>';
     echo '<li><a href="' . home_url('/contact/') . '">Contact</a></li>';
     echo '</ul>';
-} 
+}
