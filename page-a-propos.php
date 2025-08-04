@@ -5,6 +5,204 @@ Template Name: Page À Propos
 
 get_header(); ?>
 
+<style>
+/* CSS de secours pour la page À propos */
+.about-hero {
+    background: linear-gradient(135deg, rgba(0, 166, 81, 0.9) 0%, rgba(55, 175, 174, 0.9) 100%), url('<?php echo get_template_directory_uri(); ?>/assets/images/Biotox-images.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.about-hero .hero-title {
+    font-family: 'Intro Rust', Arial, sans-serif;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-hero .hero-subtitle {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.mission-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.mission-content .section-title {
+    color: #37afae;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.mission-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.vision-section {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.vision-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.vision-content .section-title {
+    color: #37afae;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.valeurs-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.valeurs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.valeur-card {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.valeur-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.valeur-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #00a651, #37afae);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.valeur-title {
+    font-family: 'Intro Rust', Arial, sans-serif;
+    color: #37afae;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.valeur-description {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.equipe-about-section {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.about-cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, rgba(175, 55, 116, 0.9) 0%, rgba(175, 55, 116, 0.8) 100%), url('<?php echo get_template_directory_uri(); ?>/assets/images/Biotox-images.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-family: 'Intro Rust', Arial, sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-buttons .btn-primary,
+.cta-buttons .btn-secondary {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cta-buttons .btn-primary {
+    background: #fff;
+    color: #af3774;
+}
+
+.cta-buttons .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .valeurs-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-hero .hero-title {
+        font-size: 2.2rem;
+    }
+}
+</style>
+
 <main id="primary" class="site-main">
     <!-- Hero Section -->
     <section class="about-hero">
